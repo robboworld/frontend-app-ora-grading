@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -7,6 +8,7 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import LoadingMessage from 'components/LoadingMessage';
 import DemoWarning from 'containers/DemoWarning';
 import ReviewActions from 'containers/ReviewActions';
+import robboMessages from 'robbo/messages';
 import ReviewContent from './ReviewContent';
 import CloseReviewConfirmModal from './components/CloseReviewConfirmModal';
 import messages from './messages';
@@ -38,6 +40,7 @@ export const ReviewModal = ({ intl }) => {
         </>
       )}
       onClose={onClose}
+      closeLabel={intl.formatMessage(robboMessages.reviewModalClose)}
       className="review-modal"
       modalBodyClassName="review-modal-body"
     >

@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,7 +6,6 @@ import moment from 'moment';
 
 import {
   DataTable,
-  TextFilter,
   MultiSelectDropdownFilter,
 } from '@openedx/paragon';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
@@ -16,6 +16,9 @@ import lmsMessages from 'data/services/lms/messages';
 import { selectors, thunkActions } from 'data/redux';
 
 import StatusBadge from 'components/StatusBadge';
+import TextFilter from 'robbo/TextFilter';
+import TableFooter from 'robbo/TableFooter';
+import TranslatedTitles from 'robbo/TranslatedTitles';
 import FilterStatusComponent from './FilterStatusComponent';
 import TableAction from './TableAction';
 import SelectedBulkAction from './SelectedBulkAction';
@@ -49,10 +52,14 @@ export class SubmissionsTable extends React.Component {
       : messages.teamSubmissionDate);
   }
 
-  formatDate = ({ value }) => {
-    const date = new Date(moment(value));
-    return date.toLocaleString();
-  };
+  // Robbo: page locale instead of the browser one (toLocaleString gave "10/9/2026, 3:39:48 PM").
+  formatDate = ({ value }) => this.props.intl.formatDate(moment(value).toDate(), {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   formatGrade = ({ value: score }) => (
     score === null ? '-' : `${score.pointsEarned}/${score.pointsPossible}`
@@ -72,7 +79,7 @@ export class SubmissionsTable extends React.Component {
       return null;
     }
     return (
-      <div className="submissions-table">
+      <TranslatedTitles className="submissions-table">
         <DataTable
           data-testid="data-table"
           isFilterable
@@ -120,9 +127,9 @@ export class SubmissionsTable extends React.Component {
         >
           <DataTable.TableControlBar />
           <DataTable.Table />
-          <DataTable.TableFooter />
+          <TableFooter />
         </DataTable>
-      </div>
+      </TranslatedTitles>
     );
   }
 }

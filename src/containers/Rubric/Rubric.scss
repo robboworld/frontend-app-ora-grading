@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 @import "~@edx/brand/paragon/variables";
 @import "~@openedx/paragon/scss/core/core";
 @import "~@edx/brand/paragon/overrides";
@@ -38,6 +39,27 @@
 
 .criterion-feedback {
   margin-top: 1rem;
+}
+
+// Robbo: the floated label of the comment fields sat on the field's top border with the line
+// running through the text (the label lost its background in the built CSS) and was cut with
+// an ellipsis, because the width limit applies before the .75 scale.
+.feedback-input.has-floating-label {
+  .form-control:focus ~ .pgn__form-control-floating-label,
+  .form-control.has-value ~ .pgn__form-control-floating-label {
+    .pgn__form-control-floating-label-content {
+      max-width: calc(100% / .75);
+    }
+
+    .pgn__form-control-floating-label-text {
+      background-color: $input-bg;
+    }
+  }
+
+  // Review mode: the field is disabled and grey; keep the notch white above the border only.
+  .form-control:disabled ~ .pgn__form-control-floating-label .pgn__form-control-floating-label-text {
+    background: linear-gradient(to bottom, $input-bg 50%, $input-disabled-bg 50%);
+  }
 }
 
 .popover.overlay-help-popover {

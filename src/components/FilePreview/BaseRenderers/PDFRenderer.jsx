@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -5,6 +6,9 @@ import {
   Icon, Form, ActionRow, IconButton,
 } from '@openedx/paragon';
 import { ChevronLeft, ChevronRight } from '@openedx/paragon/icons';
+import { useIntl } from '@edx/frontend-platform/i18n';
+
+import robboMessages from 'robbo/messages';
 
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { rendererHooks } from './pdfHooks';
@@ -19,6 +23,7 @@ export const PDFRenderer = ({
   onSuccess,
   url,
 }) => {
+  const intl = useIntl();
   const {
     pageNumber,
     numPages,
@@ -49,14 +54,14 @@ export const PDFRenderer = ({
       <ActionRow className="d-flex justify-content-center m-0">
         <IconButton
           size="inline"
-          alt="previous pdf page"
+          alt={intl.formatMessage(robboMessages.pdfPrevious)}
           iconAs={Icon}
           src={ChevronLeft}
           disabled={!hasPrev}
           onClick={onPrevPageButtonClick}
         />
         <Form.Group className="d-flex align-items-center m-0">
-          <Form.Label isInline>Page </Form.Label>
+          <Form.Label isInline>{intl.formatMessage(robboMessages.pdfPage)}&nbsp;</Form.Label>
           <Form.Control
             type="number"
             min={0}
@@ -64,11 +69,11 @@ export const PDFRenderer = ({
             value={pageNumber}
             onChange={onInputPageChange}
           />
-          <Form.Label isInline> of {numPages}</Form.Label>
+          <Form.Label isInline>&nbsp;{intl.formatMessage(robboMessages.pdfPageOf, { numPages })}</Form.Label>
         </Form.Group>
         <IconButton
           size="inline"
-          alt="next pdf page"
+          alt={intl.formatMessage(robboMessages.pdfNext)}
           iconAs={Icon}
           src={ChevronRight}
           disabled={!hasNext}

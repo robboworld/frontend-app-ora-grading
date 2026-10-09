@@ -1,6 +1,10 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, DataTableContext } from '@openedx/paragon';
+import { useIntl } from '@edx/frontend-platform/i18n';
+
+import robboMessages from 'robbo/messages';
 
 import * as module from './FilterStatusComponent';
 
@@ -26,11 +30,14 @@ export const FilterStatusComponent = ({
   buttonClassName,
   showFilteredFields,
 }) => {
+  const intl = useIntl();
   const hookProps = module.filterHooks();
   if (hookProps.filterNames === undefined) {
     return null;
   }
-  const filterTexts = <p>Filtered by {hookProps.filterNames.join(', ')}</p>;
+  const filterTexts = (
+    <p>{intl.formatMessage(robboMessages.filteredBy, { columns: hookProps.filterNames.join(', ') })}</p>
+  );
   return (
     <div className={className}>
       {showFilteredFields && filterTexts}
@@ -40,7 +47,7 @@ export const FilterStatusComponent = ({
         size={size}
         onClick={hookProps.clearFilters}
       >
-        {clearFiltersText}
+        {clearFiltersText || intl.formatMessage(robboMessages.clearFilters)}
       </Button>
     </div>
   );
@@ -51,7 +58,7 @@ FilterStatusComponent.defaultProps = {
   buttonClassName: 'pgn__smart-status-button',
   variant: 'link',
   size: 'inline',
-  clearFiltersText: 'Clear Filters',
+  clearFiltersText: null,
   showFilteredFields: true,
 };
 
