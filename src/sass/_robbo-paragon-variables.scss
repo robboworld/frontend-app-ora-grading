@@ -1,0 +1,12 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+
+// Paragon/Bootstrap functions, variables and mixins for component styles.
+// Emits no CSS: the full Paragon core is compiled once in App.scss. Importing
+// core/core in every component file duplicated ~500 KB of CSS per file.
+@import "~@edx/brand/paragon/variables";
+@import "~@openedx/paragon/scss/core/functions";
+@import "~@openedx/paragon/scss/core/variables";
+@import "~bootstrap/scss/mixins";
+@import "~@openedx/paragon/src/Form/variables";
