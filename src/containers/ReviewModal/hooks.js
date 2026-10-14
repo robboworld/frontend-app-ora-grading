@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -50,7 +51,7 @@ export const rendererHooks = ({
   return {
     onClose,
     isLoading: !(errorStatus || isLoaded),
-    title: isEnabled
+    title: !isEnabled
       ? `${oraName} - ${formatMessage(messages.demoTitleMessage)}`
       : oraName,
     isOpen,
