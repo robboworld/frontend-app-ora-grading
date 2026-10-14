@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 /* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
 // breaking change here: https://github.com/testing-library/jest-dom/releases/tag/v6.0.0
@@ -109,6 +110,8 @@ jest.mock('@openedx/paragon/icons', () => ({
 
 jest.mock('data/constants/app', () => ({
   locationId: () => 'fake-location-id',
+  pathId: () => 'fake-location-id',
+  setOraLocation: jest.fn(),
 }));
 
 jest.mock('hooks', () => ({
@@ -117,6 +120,9 @@ jest.mock('hooks', () => ({
 }));
 
 jest.mock('@zip.js/zip.js', () => ({}));
+
+// Robbo: webpack resolves the pdf.js worker URL with import.meta, which jest does not parse.
+jest.mock('robbo/pdfWorker', () => 'pdf.worker.min.js');
 
 // Mock react-redux hooks
 // unmock for integration tests

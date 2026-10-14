@@ -1,15 +1,13 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Card } from '@openedx/paragon';
 
-import createDOMPurify from 'dompurify';
-
-import parse from 'html-react-parser';
-
 import { selectors } from 'data/redux';
 import { fileUploadResponseOptions } from 'data/services/lms/constants';
+import { parseResponseHtml } from 'robbo/sanitize';
 
 import SubmissionFiles from './SubmissionFiles';
 import PreviewDisplay from './PreviewDisplay';
@@ -20,13 +18,9 @@ import './ResponseDisplay.scss';
  * <ResponseDisplay />
  */
 export class ResponseDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.purify = createDOMPurify(window);
-  }
-
+  // Robbo: no page styles, forms or images loaded from other sites (src/robbo/sanitize.js).
   get textContents() {
-    return this.props.response.text.map(text => parse(this.purify.sanitize(text)));
+    return this.props.response.text.map(text => parseResponseHtml(text));
   }
 
   get submittedFiles() {

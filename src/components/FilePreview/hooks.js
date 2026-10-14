@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 
 import { StrictDict } from 'utils';
@@ -9,6 +10,7 @@ import {
   ImageRenderer,
   TXTRenderer,
 } from 'components/FilePreview/BaseRenderers';
+import { ROBBO_RENDERERS } from 'robbo/renderers';
 
 import * as module from './hooks';
 import messages from './messages';
@@ -28,6 +30,8 @@ export const RENDERERS = StrictDict({
   [FileTypes.pjpeg]: ImageRenderer,
   [FileTypes.pjp]: ImageRenderer,
   [FileTypes.svg]: ImageRenderer,
+  // Robbo: video and program code (src/robbo/renderers).
+  ...ROBBO_RENDERERS,
 });
 
 export const SUPPORTED_TYPES = Object.keys(RENDERERS);

@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,6 +12,7 @@ import { selectors } from 'data/redux';
 import DemoWarning from 'containers/DemoWarning';
 import NotificationsBanner from 'containers/NotificationsBanner';
 import ListView from 'containers/ListView';
+import LearnersView, { isLearnersRoute } from 'robbo/learners';
 
 import './App.scss';
 import Head from './components/Head';
@@ -25,16 +27,19 @@ export const App = ({ courseMetadata, isEnabled }) => (
         courseOrg={courseMetadata.org}
         data-testid="header"
       />
-      {!isEnabled && <DemoWarning />}
+      {/* Robbo: only once the server said grading is off (null — not known yet). */}
+      {isEnabled === false && <DemoWarning />}
       <NotificationsBanner />
       <main data-testid="main">
-        <ListView />
+        {/* Robbo: a course path (course-v1:…) opens «Проверка по учащимся». */}
+        {isLearnersRoute() ? <LearnersView /> : <ListView />}
       </main>
       <FooterSlot />
     </div>
   </Router>
 );
 App.defaultProps = {
+  isEnabled: null,
   courseMetadata: {
     title: '',
     number: null,
@@ -47,7 +52,7 @@ App.propTypes = {
     number: PropTypes.string,
     org: PropTypes.string,
   }),
-  isEnabled: PropTypes.bool.isRequired,
+  isEnabled: PropTypes.bool,
 };
 
 export const mapStateToProps = (state) => ({

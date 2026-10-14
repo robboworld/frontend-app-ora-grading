@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import { StrictDict } from 'utils';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -8,7 +9,9 @@ const initialState = {
     org: '',
     courseId: '',
   },
-  isEnabled: false,
+  // Robbo: null until the server answers (initialize or the «Проверка по учащимся» API), so the
+  // demo warning does not flash on every page load while the request is in flight.
+  isEnabled: null,
   isGrading: false,
   oraMetadata: {
     prompt: '',

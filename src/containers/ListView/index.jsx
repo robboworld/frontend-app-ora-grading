@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -9,6 +10,9 @@ import { selectors, thunkActions } from 'data/redux';
 import { RequestKeys } from 'data/constants/requests';
 
 import ReviewModal from 'containers/ReviewModal';
+import { locationId } from 'data/constants/app';
+import ModeSwitch, { modes } from 'robbo/ModeSwitch';
+import { learnersPageUrl } from 'robbo/learners/api';
 
 import ListError from './ListError';
 import ListViewBreadcrumb from './ListViewBreadcrumb';
@@ -32,6 +36,14 @@ export class ListView extends React.Component {
     } = this.props;
     return (
       <Container className="py-4">
+        {/* Robbo: switch to «Проверка по учащимся»; it leads back to this assignment. */}
+        {courseId && (
+          <ModeSwitch
+            active={modes.assignment}
+            assignmentUrl={window.location.pathname}
+            learnersUrl={learnersPageUrl(courseId, { ora: locationId() })}
+          />
+        )}
         {isLoaded
           && (isEmptySubmissionData ? (
             <EmptySubmission courseId={courseId} />

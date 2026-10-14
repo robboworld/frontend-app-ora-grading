@@ -1,11 +1,10 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import { shallow } from '@edx/react-unit-test-utils';
 
-import createDOMPurify from 'dompurify';
-import parse from 'html-react-parser';
-
 import { fileUploadResponseOptions } from 'data/services/lms/constants';
 import { selectors } from 'data/redux';
+import { parseResponseHtml } from 'robbo/sanitize';
 
 import { ResponseDisplay, mapStateToProps } from '.';
 
@@ -24,10 +23,10 @@ jest.mock('data/redux', () => ({
   },
 }));
 jest.mock('./SubmissionFiles', () => 'SubmissionFiles');
-jest.mock('dompurify', () => () => ({
-  sanitize: (text) => `sanitized (${text})`,
+// Robbo: the response HTML goes through src/robbo/sanitize.js (tested in sanitize.test.jsx).
+jest.mock('robbo/sanitize', () => ({
+  parseResponseHtml: (text) => `parsed html (sanitized (${text}))`,
 }));
-jest.mock('html-react-parser', () => (text) => `parsed html (${text})`);
 
 describe('ResponseDisplay', () => {
   describe('component', () => {
@@ -82,9 +81,7 @@ describe('ResponseDisplay', () => {
           props.response.text.length,
         );
         textContents.forEach((text, index) => {
-          expect(text.el.children[0]).toEqual(
-            parse(createDOMPurify(window).sanitize(props.response.text[index])),
-          );
+          expect(text.el.children[0]).toEqual(parseResponseHtml(props.response.text[index]));
         });
       });
 

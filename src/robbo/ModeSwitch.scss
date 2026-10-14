@@ -1,0 +1,56 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+//
+// «По заданию / По учащимся»: a two-part segmented control in the brand colour.
+
+@import "../sass/robbo-paragon-variables";
+
+$robbo-mode-switch-height: 44px;
+
+.robbo-mode-switch__items {
+  display: inline-flex;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid $primary;
+  border-radius: $border-radius;
+  overflow: hidden; // the active item keeps the rounded corners
+  list-style: none;
+
+  > li {
+    display: flex;
+    min-width: 0;
+
+    + li {
+      border-left: 1px solid $primary;
+    }
+  }
+}
+
+.robbo-mode-switch__item {
+  display: inline-flex;
+  align-items: center;
+  min-height: $robbo-mode-switch-height;
+  padding: 0 map-get($spacers, 3);
+  color: $primary-700;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    background: $primary-100;
+    color: $primary-900;
+    text-decoration: none;
+  }
+
+  // Inside: the list clips anything around the items.
+  &:focus-visible {
+    outline: 2px solid $primary-900;
+    outline-offset: -4px;
+  }
+
+  &.is-active {
+    background: $primary;
+    color: $white;
+  }
+}

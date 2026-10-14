@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import { shallow } from '@edx/react-unit-test-utils';
 
@@ -19,6 +20,12 @@ jest.mock('@edx/frontend-component-footer', () => ({ FooterSlot: 'FooterSlot' })
 
 jest.mock('containers/DemoWarning', () => 'DemoWarning');
 jest.mock('containers/ListView', () => 'ListView');
+// Robbo: «Проверка по учащимся» is chosen by the page path (course-v1:…), here an assignment.
+jest.mock('robbo/learners', () => ({
+  __esModule: true,
+  default: 'LearnersView',
+  isLearnersRoute: () => false,
+}));
 jest.mock('components/Head', () => 'Head');
 
 let el;
