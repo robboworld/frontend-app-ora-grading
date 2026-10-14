@@ -1,0 +1,17 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+//
+// An image from another site in a response (sanitize.js): a placeholder link instead of
+// the image, which the grading page does not load by itself.
+
+@import "../sass/robbo-paragon-variables";
+
+.robbo-external-image {
+  display: inline-block;
+  max-width: 100%;
+  padding: map-get($spacers, 2) map-get($spacers, 3);
+  border: 1px dashed $gray-500;
+  border-radius: $border-radius;
+  overflow-wrap: anywhere;
+}

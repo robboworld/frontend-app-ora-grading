@@ -4,6 +4,11 @@ exports[`ListView component component snapshots error 1`] = `
 <Container
   className="py-4"
 >
+  <ModeSwitch
+    active="assignment"
+    assignmentUrl="/"
+    learnersUrl="/test-course-id?ora=fake-location-id"
+  />
   <ListError />
   <ReviewModal />
 </Container>
@@ -13,6 +18,11 @@ exports[`ListView component component snapshots loaded has data 1`] = `
 <Container
   className="py-4"
 >
+  <ModeSwitch
+    active="assignment"
+    assignmentUrl="/"
+    learnersUrl="/test-course-id?ora=fake-location-id"
+  />
   <Fragment>
     <ListViewBreadcrumb />
     <SubmissionsTable />
@@ -25,6 +35,11 @@ exports[`ListView component component snapshots loaded with no data 1`] = `
 <Container
   className="py-4"
 >
+  <ModeSwitch
+    active="assignment"
+    assignmentUrl="/"
+    learnersUrl="/test-course-id?ora=fake-location-id"
+  />
   <EmptySubmission
     courseId="test-course-id"
   />
@@ -36,6 +51,11 @@ exports[`ListView component component snapshots loading 1`] = `
 <Container
   className="py-4"
 >
+  <ModeSwitch
+    active="assignment"
+    assignmentUrl="/"
+    learnersUrl="/test-course-id?ora=fake-location-id"
+  />
   <div
     className="w-100 h-100 text-center"
   >

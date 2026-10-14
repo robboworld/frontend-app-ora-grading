@@ -9,11 +9,13 @@ import { ChevronLeft, ChevronRight } from '@openedx/paragon/icons';
 import { useIntl } from '@edx/frontend-platform/i18n';
 
 import robboMessages from 'robbo/messages';
+import pdfWorkerUrl from 'robbo/pdfWorker';
 
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { rendererHooks } from './pdfHooks';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// Robbo: the worker comes with the app, not from unpkg.com (src/robbo/pdfWorker.js).
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 /**
  * <PDFRenderer />

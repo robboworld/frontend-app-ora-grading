@@ -1,0 +1,488 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+//
+// «Проверка по учащимся»: learner list | feed of responses. Desktop-first: the list sits
+// beside the feed from lg, the rubric of the open response beside its files from xl;
+// narrower, everything stacks.
+
+@import "../../sass/robbo-paragon-variables";
+
+$robbo-learners-max-width: 1680px;
+$robbo-learners-list-width: 280px;
+$robbo-learners-rubric-width: 360px;
+$robbo-learners-gap: map-get($spacers, 4);
+$robbo-learners-sticky-top: map-get($spacers, 3);
+$robbo-learners-hit-size: 44px;
+$robbo-learners-marker: 3px;
+
+.robbo-learners {
+  max-width: $robbo-learners-max-width;
+  margin: 0 auto;
+  padding-top: map-get($spacers, 4);
+  padding-bottom: map-get($spacers, 5);
+}
+
+.robbo-learners__title {
+  margin: map-get($spacers, 3) 0 map-get($spacers, 4);
+  font-size: $h3-font-size;
+}
+
+.robbo-learners__loading {
+  display: flex;
+  justify-content: center;
+  padding: map-get($spacers, 5) 0;
+}
+
+.robbo-learners__empty {
+  max-width: 40rem;
+  color: $gray-700;
+}
+
+.robbo-learners__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $robbo-learners-gap;
+  align-items: start;
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: $robbo-learners-list-width minmax(0, 1fr);
+  }
+}
+
+.robbo-learners__main {
+  min-width: 0;
+}
+
+// Learner list
+
+.robbo-learner-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-height: 40vh;
+  padding: map-get($spacers, 3);
+  border: 1px solid $light-400;
+  border-radius: $border-radius;
+  background: $white;
+
+  @include media-breakpoint-up(lg) {
+    position: sticky;
+    top: $robbo-learners-sticky-top;
+    max-height: calc(100vh - #{2 * $robbo-learners-sticky-top});
+  }
+}
+
+.robbo-learner-list__heading {
+  margin-bottom: map-get($spacers, 2);
+  font-size: $h4-font-size;
+}
+
+.robbo-learner-list__search {
+  margin-bottom: map-get($spacers, 2);
+}
+
+.robbo-learner-list__items {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0 (-(map-get($spacers, 2)));
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.robbo-learner-list__empty {
+  margin: map-get($spacers, 2) 0 0;
+  color: $gray-500;
+}
+
+.robbo-learner {
+  display: flex;
+  align-items: center;
+  gap: map-get($spacers, 2);
+  width: 100%;
+  min-height: $robbo-learners-hit-size;
+  padding: map-get($spacers, 2);
+  border: 0;
+  border-left: $robbo-learners-marker solid transparent;
+  border-radius: $border-radius;
+  background: transparent;
+  color: $body-color;
+  text-align: left;
+
+  &:hover {
+    background: $light-300;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: -2px;
+  }
+
+  &.is-selected {
+    border-left-color: $primary;
+    background: $primary-100;
+  }
+}
+
+.robbo-learner__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.robbo-learner__name,
+.robbo-learner__username {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.robbo-learner__name {
+  font-weight: 600;
+}
+
+.robbo-learner__username {
+  color: $gray-500;
+  font-size: $font-size-sm;
+}
+
+.robbo-learner__count {
+  flex: 0 0 auto;
+}
+
+.robbo-learner__done {
+  flex: 0 0 auto;
+  color: $primary;
+}
+
+// Feed of the selected learner
+
+.robbo-learner-answers__header {
+  margin-bottom: map-get($spacers, 3);
+}
+
+.robbo-learner-answers__name {
+  margin-bottom: map-get($spacers, 1);
+  font-size: $h3-font-size;
+  overflow-wrap: anywhere;
+}
+
+.robbo-learner-answers__meta,
+.robbo-learner-answers__summary {
+  margin-bottom: map-get($spacers, 1);
+  color: $gray-700;
+  overflow-wrap: anywhere;
+}
+
+.robbo-learner-answers__meta {
+  color: $gray-500;
+}
+
+.robbo-learner-answers__list {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacers, 3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Response card
+
+.robbo-answer {
+  &.is-active {
+    border-color: $primary;
+    box-shadow: 0 0 0 1px $primary;
+  }
+
+  &.is-missing {
+    background: $light-200;
+
+    .robbo-answer__name {
+      color: $gray-700;
+    }
+  }
+}
+
+.robbo-answer__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: map-get($spacers, 2) $robbo-learners-gap;
+}
+
+.robbo-answer__title {
+  flex: 1 1 20rem;
+  min-width: 0;
+}
+
+.robbo-answer__unit {
+  margin-bottom: map-get($spacers, 1);
+  color: $gray-500;
+  font-size: $font-size-sm;
+}
+
+.robbo-answer__name {
+  margin-bottom: map-get($spacers, 1);
+  font-size: $h4-font-size;
+  overflow-wrap: anywhere;
+}
+
+.robbo-answer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 map-get($spacers, 3);
+  margin: 0;
+  font-size: $font-size-sm;
+}
+
+.robbo-answer__state {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: map-get($spacers, 1);
+  font-size: $font-size-sm;
+  text-align: right;
+
+  @include media-breakpoint-down(sm) {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  // Status of the response clearly larger than the stock badge (75%), so it reads at a glance
+  // next to the score and the date.
+  .badge {
+    font-size: 105%;
+  }
+}
+
+.robbo-answer__score {
+  font-weight: 600;
+}
+
+// The response also has text, possibly collapsed below big file previews: a small flag in
+// the header; it opens and scrolls to the text.
+.robbo-answer__text-flag.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: map-get($spacers, 1);
+  min-height: 0;
+  padding: 2px map-get($spacers, 2);
+  border-radius: $border-radius;
+  background: $primary-100;
+  color: $primary-900;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+
+  // Clickable area larger than the flag itself.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -6px -4px;
+  }
+
+  .btn-icon-before,
+  .pgn__icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background: $primary-200;
+    color: $primary-900;
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.robbo-answer__date,
+.robbo-answer__missing {
+  color: $gray-500;
+}
+
+.robbo-answer__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $robbo-learners-gap;
+  padding: 0 map-get($spacers, 4) map-get($spacers, 4);
+
+  @include media-breakpoint-down(sm) {
+    padding: 0 map-get($spacers, 3) map-get($spacers, 3);
+  }
+}
+
+.robbo-answer__content {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacers, 3);
+  min-width: 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.robbo-answer.is-active .robbo-answer__body {
+  @include media-breakpoint-up(xl) {
+    grid-template-columns: minmax(0, 1fr) $robbo-learners-rubric-width;
+    align-items: start;
+  }
+}
+
+.robbo-answer__grading {
+  min-width: 0;
+
+  @include media-breakpoint-up(xl) {
+    position: sticky;
+    top: $robbo-learners-sticky-top;
+    max-height: calc(100vh - #{2 * $robbo-learners-sticky-top});
+    overflow-y: auto;
+  }
+
+  // The stock rubric is a fixed 320px sticky column of the grading window (Rubric.scss,
+  // with !important); here it fills the grading column.
+  .grading-rubric-card {
+    width: 100% !important;
+    margin-left: 0;
+    position: static !important;
+  }
+}
+
+.robbo-active-grading__loading {
+  display: flex;
+  justify-content: center;
+  padding: map-get($spacers, 4) 0;
+}
+
+.robbo-active-grading__actions {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: map-get($spacers, 2);
+  margin-bottom: map-get($spacers, 3);
+}
+
+.robbo-answer__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: map-get($spacers, 2) map-get($spacers, 3);
+}
+
+.robbo-answer__hint {
+  color: $gray-500;
+  font-size: $font-size-sm;
+}
+
+.robbo-answer__section-heading {
+  margin: 0;
+  font-size: $font-size-base;
+  font-weight: 600;
+}
+
+// Files and text
+
+.robbo-answer-files {
+  display: flex;
+  flex-direction: column;
+  gap: map-get($spacers, 2);
+  min-width: 0;
+}
+
+// react-pdf gives the page an inline `min-width: min-content`, and the canvas keeps its
+// rendered width as min-content (Firefox), so the page overflowed the card. Here the page
+// follows the card; the grading window keeps the stock sizing. The text and link layers
+// stay at the PDF size (the stock preview only scales the canvas) and are clipped.
+.robbo-answer-files .react-pdf__Page {
+  min-width: 0 !important;
+  overflow: hidden;
+}
+
+.robbo-answer-files__downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: map-get($spacers, 2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    max-width: 100%;
+  }
+}
+
+.robbo-file-download {
+  display: inline-flex;
+  align-items: center;
+  gap: map-get($spacers, 1);
+  max-width: 100%;
+  min-height: $robbo-learners-hit-size;
+}
+
+.robbo-file-download__icon {
+  flex: 0 0 auto;
+}
+
+.robbo-file-download__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.robbo-file-download__size {
+  flex: 0 0 auto;
+  opacity: .75;
+}
+
+.robbo-answer-text__part {
+  overflow-wrap: anywhere;
+
+  &.is-plain {
+    white-space: pre-wrap;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  // The response sits inside the feed list, so the browser gave its lists the nested
+  // markers (○); a response is a document of its own.
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul ul,
+  ol ul {
+    list-style-type: circle;
+  }
+
+  blockquote {
+    margin: 0 0 map-get($spacers, 3);
+    padding-left: map-get($spacers, 3);
+    border-left: 4px solid $light-400;
+    border-radius: 0;
+    color: $gray-700;
+  }
+
+  + .robbo-answer-text__part {
+    margin-top: map-get($spacers, 3);
+  }
+}

@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import { initialState, reducer, actions } from './reducer';
 
 describe('app reducer', () => {
@@ -10,7 +11,7 @@ describe('app reducer', () => {
       expect(data.courseId).toEqual('');
     });
     test('disabled (waffle flag)', () => {
-      expect(initialState.isEnabled).toEqual(false);
+      expect(initialState.isEnabled).toEqual(null);
     });
     test('not grading', () => {
       expect(initialState.isGrading).toEqual(false);

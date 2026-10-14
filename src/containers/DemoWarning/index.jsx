@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -32,7 +33,8 @@ DemoWarning.propTypes = {
 };
 
 export const mapStateToProps = (state) => ({
-  hide: selectors.app.isEnabled(state),
+  // Robbo: hidden while it is not known yet (null), not only when grading is on.
+  hide: selectors.app.isEnabled(state) !== false,
 });
 export const mapDispatchToProps = {};
 

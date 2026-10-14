@@ -1,0 +1,82 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+//
+// Video and code previews (renderers/index.js). Syntax colours stay within the brand:
+// coal and green shades, grey comments — no rainbow theme.
+
+@import "../../sass/robbo-paragon-variables";
+
+$robbo-preview-max-height: 70vh;
+
+.robbo-video-renderer {
+  display: block;
+  width: 100%;
+  max-height: $robbo-preview-max-height;
+  background: $black;
+}
+
+.robbo-code-renderer {
+  max-height: $robbo-preview-max-height;
+  margin: 0;
+  padding: map-get($spacers, 3);
+  overflow: auto;
+  border-radius: $border-radius;
+  background: $light-200;
+  color: $body-color;
+  font-family: $font-family-monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  tab-size: 4;
+
+  code {
+    color: inherit;
+    font: inherit;
+    white-space: pre;
+  }
+
+  &.is-plain code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .hljs-keyword,
+  .hljs-built_in,
+  .hljs-selector-tag,
+  .hljs-meta {
+    color: $primary-900;
+    font-weight: 700;
+  }
+
+  .hljs-string,
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-template-variable,
+  .hljs-regexp {
+    color: $primary-700;
+  }
+
+  .hljs-number,
+  .hljs-literal,
+  .hljs-symbol {
+    color: $primary-800;
+  }
+
+  .hljs-title,
+  .hljs-name,
+  .hljs-section {
+    font-weight: 600;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: $gray-500;
+    font-style: italic;
+  }
+}
+
+.robbo-code-renderer__truncated {
+  margin-bottom: map-get($spacers, 2);
+  color: $gray-700;
+  font-size: $font-size-sm;
+}
