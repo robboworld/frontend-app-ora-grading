@@ -1,3 +1,4 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import { useSelector } from 'react-redux';
 
 import { keyStore } from 'utils';
@@ -134,10 +135,10 @@ describe('ReviewModal hooks', () => {
         hook = loadHook({ isLoaded: true });
         expect(hook.isLoading).toEqual(false);
       });
-      test('title is ora name, with appended demo title message if isEnabled', () => {
-        hook = loadHook({});
-        expect(hook.title).toEqual(reduxValues.oraName);
+      test('title is ora name, with appended demo title message if not isEnabled', () => {
         hook = loadHook({ isEnabled: true });
+        expect(hook.title).toEqual(reduxValues.oraName);
+        hook = loadHook({});
         expect(hook.title).toEqual(
           [reduxValues.oraName, formatMessage(messages.demoTitleMessage)].join(' - '),
         );
