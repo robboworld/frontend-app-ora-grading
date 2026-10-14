@@ -43,7 +43,7 @@ exports[`StatusBadge component behavior status snapshots: loads badge with confi
 
 exports[`StatusBadge component behavior status snapshots: loads badge with configured variant and message. \`ungraded\` shows primary button variant and message 1`] = `
 <Badge
-  className="test-className"
+  className="test-className robbo-status-ungraded"
   variant="primary"
 >
   <FormattedMessage

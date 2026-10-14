@@ -1,0 +1,17 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+//
+// «Не оценено» in brand coal: the stock primary badge was the same green as «Оценено».
+// Coal is `$text-color-primary` of robbo-brand-openedx (installed as @edx/brand at build);
+// the stock brand of a local checkout has no such token.
+
+@import "../sass/robbo-paragon-variables";
+
+$robbo-status-ungraded-bg: if(variable-exists(text-color-primary), $text-color-primary, #383838);
+
+.badge.robbo-status-ungraded {
+  border-color: $robbo-status-ungraded-bg;
+  background-color: $robbo-status-ungraded-bg;
+  color: $white;
+}
