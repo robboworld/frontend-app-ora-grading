@@ -1,5 +1,7 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { Badge } from '@openedx/paragon';
 import { FormattedMessage } from '@edx/frontend-platform/i18n';
@@ -7,6 +9,8 @@ import { FormattedMessage } from '@edx/frontend-platform/i18n';
 import { StrictDict } from 'utils';
 import { gradingStatuses as statuses } from 'data/services/lms/constants';
 import messages from 'data/services/lms/messages';
+
+import '../robbo/StatusBadge.scss';
 
 export const buttonVariants = StrictDict({
   primary: 'primary',
@@ -31,7 +35,8 @@ export const StatusBadge = ({ className, status }) => {
   }
   return (
     <Badge
-      className={className}
+      // Robbo: «Не оценено» in brand coal (src/robbo/StatusBadge.scss), apart from the green «Оценено».
+      className={classNames(className, { 'robbo-status-ungraded': status === statuses.ungraded })}
       variant={statusVariants[status]}
     >
       <FormattedMessage {...messages[status]} />
