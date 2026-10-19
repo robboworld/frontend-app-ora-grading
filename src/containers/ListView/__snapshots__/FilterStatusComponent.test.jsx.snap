@@ -5,8 +5,7 @@ exports[`FilterStatusComponent component snapshot with filters showFilteredField
   className="css-class-name"
 >
   <p>
-    Filtered by 
-    filter-name-0, filter-name-1
+    Filtered by filter-name-0, filter-name-1
   </p>
   <Button
     className="css-class-name-for-button"

@@ -9,6 +9,7 @@ import Rubric from 'containers/Rubric/messages';
 import ReviewModal from 'containers/ReviewModal/messages';
 import ReviewErrors from 'containers/ReviewModal/ReviewErrors/messages';
 import lms from 'data/services/lms/messages';
+import robbo from 'robbo/messages';
 
 const mapMessages = (messages) => Object.keys(messages).reduce(
   (acc, key) => ({ ...acc, [key]: messages[key].defaultMessage }),
@@ -27,4 +28,5 @@ export default {
   ReviewModal: mapMessages(ReviewModal),
   ReviewErrors: mapMessages(ReviewErrors),
   lms: mapMessages(lms),
+  robbo: mapMessages(robbo),
 };

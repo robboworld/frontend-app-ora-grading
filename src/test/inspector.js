@@ -34,8 +34,9 @@ class Inspector {
       tableRows,
       selectedBtn: (num) => this.getByText(`View selected responses (${num})`),
       loadingResponses: () => this.getByText(appMessages.ListView.loadingResponses),
+      // Robbo: TranslatedTitles replaces react-table's "Toggle Row Selected" tooltip.
       listCheckbox: (index) => (
-        within(tableRows().item(index)).getByTitle('Toggle Row Selected')
+        within(tableRows().item(index)).getByTitle(appMessages.robbo.toggleRowSelected)
       ),
       backLink: () => this.getByText(appMessages.ListView.backToResponsesLowercase).closest('a'),
       reloadBtn: () => this.getByText(appMessages.ListView.reloadSubmissions).closest('button'),

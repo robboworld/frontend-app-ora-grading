@@ -191,9 +191,10 @@ const initialize = async () => {
  * Wait for the review page to show and update the top-level state object.
  */
 const makeTableSelections = async () => {
-  [0, 1, 2, 3, 4].forEach(
-    index => userEvent.click(inspector.listView.listCheckbox(index))
-  );
+  // Robbo: await each click (user-event 14 is async); unawaited clicks raced findByText under load.
+  for (const index of [0, 1, 2, 3, 4]) {
+    await userEvent.click(inspector.listView.listCheckbox(index));
+  }
 
   await inspector.find.listView.selectedBtn(5);
   await userEvent.click(inspector.listView.selectedBtn(5));

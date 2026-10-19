@@ -1,15 +1,13 @@
 import React from 'react';
 import { shallow } from '@edx/react-unit-test-utils';
 
-import {
-  MultiSelectDropdownFilter,
-  TextFilter,
-} from '@openedx/paragon';
+import { MultiSelectDropdownFilter } from '@openedx/paragon';
 
 import { selectors, thunkActions } from 'data/redux';
 import { gradingStatuses as statuses, submissionFields } from 'data/services/lms/constants';
 
 import StatusBadge from 'components/StatusBadge';
+import TextFilter from 'robbo/TextFilter';
 import { formatMessage } from 'testUtils';
 import messages from './messages';
 import {
@@ -21,6 +19,10 @@ import {
 jest.mock('./FilterStatusComponent', () => jest.fn().mockName('FilterStatusComponent'));
 jest.mock('./TableAction', () => jest.fn().mockName('TableAction'));
 jest.mock('./SelectedBulkAction', () => jest.fn().mockName('SelectedBulkAction'));
+// Robbo: translatable search filter, table footer and react-table tooltips (src/robbo).
+jest.mock('robbo/TextFilter', () => 'TextFilter');
+jest.mock('robbo/TableFooter', () => 'TableFooter');
+jest.mock('robbo/TranslatedTitles', () => 'TranslatedTitles');
 
 jest.mock('data/redux', () => ({
   selectors: {
@@ -244,12 +246,20 @@ describe('SubmissionsTable component', () => {
     });
     describe('behavior', () => {
       describe('formatDate method', () => {
-        it('returns the date in locale time string', () => {
+        // Robbo: the date in the page locale through intl.formatDate, not the browser's toLocaleString.
+        it('returns the date formatted in the page locale', () => {
           const fakeDate = 16131215154955;
           const fakeDateString = 'test-date-string';
-          const mock = jest.spyOn(Date.prototype, 'toLocaleString').mockReturnValue(fakeDateString);
+          const formatDate = jest.fn(() => fakeDateString);
+          el = shallow(<SubmissionsTable {...props} intl={{ formatMessage, formatDate }} />);
           expect(el.instance.children[0].props.columns[1].Cell({ value: fakeDate })).toEqual(fakeDateString);
-          mock.mockRestore();
+          expect(formatDate).toHaveBeenCalledWith(new Date(fakeDate), {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+          });
         });
       });
       describe('formatGrade method', () => {
