@@ -7,6 +7,7 @@ import {
 } from '@edx/frontend-platform';
 
 import messages from './i18n';
+import { initRobboErrors } from './robbo-errors';
 import * as app from '.';
 
 // These need to be var not let so they get hoisted
@@ -47,6 +48,14 @@ jest.mock('@edx/frontend-component-footer', () => ({
   messages: ['some', 'messages'],
 }));
 jest.mock('./App', () => 'App');
+// Robbo: src/robbo-errors has its own tests; here only its wiring is checked (the real initRobboErrors
+// would add its own APP_READY subscriber and shift subscribe.mock.calls).
+jest.mock('./robbo-errors', () => ({
+  initRobboErrors: jest.fn(),
+  RobboErrorBoundary: 'RobboErrorBoundary',
+  RobboErrorPage: 'RobboErrorPage',
+  robboErrorsMiddleware: 'robboErrorsMiddleware',
+}));
 
 const testValue = 'my-test-value';
 describe('app registry', () => {
@@ -72,7 +81,8 @@ describe('app registry', () => {
     const callArgs = subscribe.mock.calls[1];
     expect(callArgs[0]).toEqual(APP_INIT_ERROR);
     const error = { message: 'test-error-message' };
-    callArgs[1](error);
+    // Robbo: PubSub calls back with (topic, data), the error is the second argument.
+    callArgs[1](APP_INIT_ERROR, error);
     const [rendered] = mockRender.mock.calls[0];
     expect(rendered).toMatchSnapshot();
   });
@@ -81,6 +91,10 @@ describe('app registry', () => {
     const initializeArg = initialize.mock.calls[0][0];
     expect(initializeArg.messages).toEqual(messages);
     expect(initializeArg.requireAuthenticatedUser).toEqual(true);
+  });
+  test('Robbo: human-readable errors for staff, axios errors through robboErrorsMiddleware', () => {
+    expect(initRobboErrors).toHaveBeenCalledWith({ app: 'ora-grading', audience: 'staff' });
+    expect(initialize.mock.calls[0][0].authMiddleware).toEqual(['robboErrorsMiddleware']);
   });
   test('initialize config loads support url if available', () => {
     const oldEnv = process.env;
