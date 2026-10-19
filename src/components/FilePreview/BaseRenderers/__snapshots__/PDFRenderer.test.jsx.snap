@@ -27,7 +27,7 @@ exports[`PDF Renderer Component snapshots first page, prev is disabled 1`] = `
     className="d-flex justify-content-center m-0"
   >
     <IconButton
-      alt="previous pdf page"
+      alt="Previous PDF page"
       disabled={true}
       iconAs="Icon"
       onClick={[MockFunction hooks.onPrevPageButtonClick]}
@@ -40,7 +40,8 @@ exports[`PDF Renderer Component snapshots first page, prev is disabled 1`] = `
       <Form.Label
         isInline={true}
       >
-        Page 
+        Page
+         
       </Form.Label>
       <Form.Control
         max={10}
@@ -52,12 +53,12 @@ exports[`PDF Renderer Component snapshots first page, prev is disabled 1`] = `
       <Form.Label
         isInline={true}
       >
-         of 
-        10
+         
+        of 10
       </Form.Label>
     </Form.Group>
     <IconButton
-      alt="next pdf page"
+      alt="Next PDF page"
       disabled={false}
       iconAs="Icon"
       onClick={[MockFunction hooks.onNextPageButtonClick]}
@@ -95,7 +96,7 @@ exports[`PDF Renderer Component snapshots on last page, next is disabled 1`] = `
     className="d-flex justify-content-center m-0"
   >
     <IconButton
-      alt="previous pdf page"
+      alt="Previous PDF page"
       disabled={false}
       iconAs="Icon"
       onClick={[MockFunction hooks.onPrevPageButtonClick]}
@@ -108,7 +109,8 @@ exports[`PDF Renderer Component snapshots on last page, next is disabled 1`] = `
       <Form.Label
         isInline={true}
       >
-        Page 
+        Page
+         
       </Form.Label>
       <Form.Control
         max={10}
@@ -120,12 +122,12 @@ exports[`PDF Renderer Component snapshots on last page, next is disabled 1`] = `
       <Form.Label
         isInline={true}
       >
-         of 
-        10
+         
+        of 10
       </Form.Label>
     </Form.Group>
     <IconButton
-      alt="next pdf page"
+      alt="Next PDF page"
       disabled={true}
       iconAs="Icon"
       onClick={[MockFunction hooks.onNextPageButtonClick]}

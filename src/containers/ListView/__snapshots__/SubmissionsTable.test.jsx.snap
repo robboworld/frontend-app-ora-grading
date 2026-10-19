@@ -3,7 +3,7 @@
 exports[`SubmissionsTable component component render tests snapshots snapshot: empty (no list data) 1`] = `null`;
 
 exports[`SubmissionsTable component component render tests snapshots snapshot: happy path 1`] = `
-<div
+<TranslatedTitles
   className="submissions-table"
 >
   <DataTable
@@ -119,13 +119,13 @@ exports[`SubmissionsTable component component render tests snapshots snapshot: h
   >
     <DataTable.TableControlBar />
     <DataTable.Table />
-    <DataTable.TableFooter />
+    <TableFooter />
   </DataTable>
-</div>
+</TranslatedTitles>
 `;
 
 exports[`SubmissionsTable component component render tests snapshots snapshot: team happy path 1`] = `
-<div
+<TranslatedTitles
   className="submissions-table"
 >
   <DataTable
@@ -241,7 +241,7 @@ exports[`SubmissionsTable component component render tests snapshots snapshot: t
   >
     <DataTable.TableControlBar />
     <DataTable.Table />
-    <DataTable.TableFooter />
+    <TableFooter />
   </DataTable>
-</div>
+</TranslatedTitles>
 `;
