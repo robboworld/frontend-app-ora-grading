@@ -2,8 +2,13 @@
 
 exports[`app registry subscribe: APP_INIT_ERROR.  snapshot: displays an ErrorPage to root element 1`] = `
 <React Strict Mode>
-  <ErrorPage
-    message="test-error-message"
+  <RobboErrorPage
+    error={
+      {
+        "message": "test-error-message",
+      }
+    }
+    startup={true}
   />
 </React Strict Mode>
 `;
@@ -22,7 +27,9 @@ exports[`app registry subscribe: APP_READY.  links App to root element 1`] = `
     }
     wrapWithRouter={false}
   >
-    <App />
+    <RobboErrorBoundary>
+      <App />
+    </RobboErrorBoundary>
   </AppProvider>
 </React Strict Mode>
 `;
