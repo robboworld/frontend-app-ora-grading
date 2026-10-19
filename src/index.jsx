@@ -4,7 +4,7 @@ import 'regenerator-runtime/runtime';
 
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
+import { AppProvider } from '@edx/frontend-platform/react';
 
 import store from 'data/store';
 import {
@@ -16,8 +16,14 @@ import {
 } from '@edx/frontend-platform';
 
 import messages from './i18n';
+import {
+  initRobboErrors, RobboErrorBoundary, RobboErrorPage, robboErrorsMiddleware,
+} from './robbo-errors';
 
 import App from './App';
+
+// Robbo: human-readable errors with a code and number (src/robbo-errors).
+initRobboErrors({ app: 'ora-grading', audience: 'staff' });
 
 subscribe(APP_READY, () => {
   const root = createRoot(document.getElementById('root'));
@@ -25,18 +31,21 @@ subscribe(APP_READY, () => {
   root.render(
     <StrictMode>
       <AppProvider store={store} wrapWithRouter={false}>
-        <App />
+        <RobboErrorBoundary>
+          <App />
+        </RobboErrorBoundary>
       </AppProvider>
     </StrictMode>,
   );
 });
 
-subscribe(APP_INIT_ERROR, (error) => {
+// PubSub calls back with (topic, data): the error is the second argument.
+subscribe(APP_INIT_ERROR, (message, error) => {
   const root = createRoot(document.getElementById('root'));
 
   root.render(
     <StrictMode>
-      <ErrorPage message={error.message} />
+      <RobboErrorPage error={error} startup />
     </StrictMode>,
   );
 });
@@ -44,6 +53,7 @@ subscribe(APP_INIT_ERROR, (error) => {
 export const appName = 'OraGradingAppConfig';
 
 initialize({
+  authMiddleware: [robboErrorsMiddleware],
   handlers: {
     config: () => {
       mergeConfig({
