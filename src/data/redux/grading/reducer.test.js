@@ -191,6 +191,13 @@ describe('app reducer', () => {
             );
           });
         });
+        describe('setAllowRetake', () => {
+          it('loads allowRetake from payload', () => {
+            expect(reducer(testState, actions.setAllowRetake(true))).toEqual(
+              mocks.updateGradingData(testState, { allowRetake: true }),
+            );
+          });
+        });
         describe('setShowValidation', () => {
           it('loads showValidation from payload', () => {
             expect(reducer(testState, actions.setShowValidation(testValue))).toEqual(

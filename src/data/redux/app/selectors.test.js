@@ -108,6 +108,12 @@ describe('app selectors unit tests', () => {
     test('ora.type selector returns type from oraMetadata', () => {
       testOraSelector(selectors.ora.type, oraMetadata.type);
     });
+    test('ora.retakeSupported selector is true only when the server says so', () => {
+      const { cb } = selectors.ora.retakeSupported;
+      expect(cb({ retakeSupported: true })).toEqual(true);
+      expect(cb({ retakeSupported: false })).toEqual(false);
+      expect(cb({})).toEqual(false);
+    });
     test('rubricConfig selector returns rubricConfig from oraMetadata', () => {
       testOraSelector(selectors.rubric.config, oraMetadata.rubricConfig);
     });
