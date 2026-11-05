@@ -155,6 +155,9 @@ const grading = createSlice({
     setCriterionFeedback: (state, { payload: { orderNum, value } }) => (
       module.updateCriterion(state, orderNum, { feedback: value })
     ),
+    setAllowRetake: (state, { payload }) => (
+      module.updateGradingData(state, { allowRetake: payload })
+    ),
     setShowValidation: (state, { payload }) => (
       module.updateGradingData(state, { showValidation: payload })
     ),

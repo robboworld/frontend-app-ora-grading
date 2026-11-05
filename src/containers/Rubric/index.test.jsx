@@ -8,6 +8,7 @@ import { Rubric } from '.';
 
 jest.mock('containers/CriterionContainer', () => 'CriterionContainer');
 jest.mock('./RubricFeedback', () => 'RubricFeedback');
+jest.mock('robbo/RetakeToggle', () => 'RetakeToggle');
 jest.mock('components/DemoAlert', () => 'DemoAlert');
 jest.mock('./hooks', () => ({
   rendererHooks: jest.fn(),

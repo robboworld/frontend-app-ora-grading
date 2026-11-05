@@ -171,5 +171,7 @@
   "robbo.ora-grading.FilePreview.previewTruncated": "Показан первый {size} файла. Скачайте файл, чтобы увидеть его целиком.",
   "robbo.ora-grading.Learners.externalImage": "Картинка с другого сайта, не загружена автоматически: {name}",
   "robbo.ora-grading.Learners.textFlag": "Есть текст ответа",
-  "robbo.ora-grading.Learners.textFlagTitle": "Показать текст ответа"
+  "robbo.ora-grading.Learners.textFlagTitle": "Показать текст ответа",
+  "robbo.ora-grading.Rubric.allowRetake": "Разрешить пересдачу",
+  "robbo.ora-grading.Rubric.allowRetakeHint": "Учащийся сможет один раз отправить новый ответ, даже если срок сдачи прошёл. Эта оценка сохранится, пока вы не проверите новый ответ."
 }
