@@ -52,6 +52,11 @@ export const ora = {
    * @return {bool} - is the ORA an individual ORA?
    */
   isIndividual: oraMetadataSelector(data => data.type === oraTypes.individual),
+  /**
+   * Returns true iff the learner can retake this ORA after a grade (not team, not peer)
+   * @return {bool} - can a retake be allowed?
+   */
+  retakeSupported: oraMetadataSelector(data => !!data.retakeSupported),
 };
 
 /**

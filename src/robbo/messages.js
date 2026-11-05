@@ -8,6 +8,16 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
+  allowRetake: {
+    id: 'robbo.ora-grading.Rubric.allowRetake',
+    defaultMessage: 'Allow a retake',
+    description: 'Checkbox under the rubric: the learner may send a new response for a new grade',
+  },
+  allowRetakeHint: {
+    id: 'robbo.ora-grading.Rubric.allowRetakeHint',
+    defaultMessage: 'The learner can send a new response once, even after the deadline. This grade stays until you grade the new response.',
+    description: 'Explanation under the checkbox that allows a retake',
+  },
   textFilterPlaceholder: {
     id: 'robbo.ora-grading.TextFilter.placeholder',
     defaultMessage: 'Search {column}',

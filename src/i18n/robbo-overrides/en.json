@@ -1,3 +1,5 @@
 {
-  "ora-grading.ReviewModal.resubmitGrade": "Resubmit grade"
+  "ora-grading.ReviewModal.resubmitGrade": "Resubmit grade",
+  "robbo.ora-grading.Rubric.allowRetake": "Allow a retake",
+  "robbo.ora-grading.Rubric.allowRetakeHint": "The learner can send a new response once, even after the deadline. This grade stays until you grade the new response."
 }

@@ -167,6 +167,19 @@ selected.overallFeedback = createSelector(
 );
 
 /**
+ * Returns whether the learner may retake the selected submission, for both review and
+ * grading views.
+ * @return {bool} - is a retake allowed?
+ */
+selected.allowRetake = createSelector(
+  [module.selected.isGrading, module.selected.gradeData, module.selected.gradingData],
+  (isGrading, remote, local) => {
+    const entry = isGrading ? local : remote;
+    return !!entry?.allowRetake;
+  },
+);
+
+/**
  * Returns the grade data for the given criterion of the current
  * selection for both review and grading views.
  * @param {number} orderNum - criterion orderNum (and index)

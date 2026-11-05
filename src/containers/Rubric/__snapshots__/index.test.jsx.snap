@@ -28,6 +28,7 @@ exports[`Rubric Container shapshot: hide footer 1`] = `
       />
       <hr />
       <RubricFeedback />
+      <RetakeToggle />
     </Card.Section>
   </Card>
   <DemoAlert
@@ -64,6 +65,7 @@ exports[`Rubric Container snapshot: show footer 1`] = `
       />
       <hr />
       <RubricFeedback />
+      <RetakeToggle />
     </Card.Section>
     <div
       className="grading-rubric-footer"

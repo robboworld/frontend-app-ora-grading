@@ -6,6 +6,7 @@ import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 
 import DemoAlert from 'components/DemoAlert';
 import CriterionContainer from 'containers/CriterionContainer';
+import RetakeToggle from 'robbo/RetakeToggle';
 import RubricFeedback from './RubricFeedback';
 
 import * as hooks from './hooks';
@@ -35,6 +36,7 @@ export const Rubric = ({ intl }) => {
           {criteria.map(props => <CriterionContainer {...props} />)}
           <hr />
           <RubricFeedback />
+          <RetakeToggle />
         </Card.Section>
         {showFooter && (
           <div className="grading-rubric-footer">
