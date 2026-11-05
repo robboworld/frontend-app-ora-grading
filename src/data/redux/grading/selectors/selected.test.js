@@ -287,6 +287,25 @@ describe('selected submission grading selectors unit tests', () => {
     });
   });
 
+  describe('selected.allowRetake selector', () => {
+    const { cb, preSelectors } = selectors.selected.allowRetake;
+    it('has the correct pre-selectors', () => {
+      expect(preSelectors).toEqual([
+        selectors.selected.isGrading,
+        selectors.selected.gradeData,
+        selectors.selected.gradingData,
+      ]);
+    });
+    it('returns the local value when grading, the saved one otherwise', () => {
+      expect(cb(true, { allowRetake: false }, { allowRetake: true })).toEqual(true);
+      expect(cb(false, { allowRetake: false }, { allowRetake: true })).toEqual(false);
+    });
+    it('defaults to false without data', () => {
+      expect(cb(true, {}, undefined)).toEqual(false);
+      expect(cb(false, undefined, {})).toEqual(false);
+    });
+  });
+
   describe('selected.criterionGradeData selector', () => {
     const orderNum = 'testOrderNum1';
     const testState = { [orderNum]: { state: 'some state' } };
