@@ -24,7 +24,6 @@ jest.mock('data/redux', () => ({
 }));
 
 jest.mock('data/services/lms/urls', () => ({
-  openResponse: (courseId) => `openResponseUrl(${courseId})`,
   ora: (courseId, locationId) => `oraUrl(${courseId}, ${locationId})`,
 }));
 
@@ -42,14 +41,9 @@ describe('ListViewBreadcrumb component', () => {
     test('snapshot: empty (no list data)', () => {
       expect(el.snapshot).toMatchSnapshot();
     });
-    test('openResponse destination', () => {
-      expect(
-        el.instance.findByType(Hyperlink)[0].props.destination,
-      ).toEqual(urls.openResponse(props.courseId));
-    });
     test('ora destination', () => {
       expect(
-        el.instance.findByType(Hyperlink)[1].props.destination,
+        el.instance.findByType(Hyperlink)[0].props.destination,
       ).toEqual(urls.ora(props.courseId, constants.locationId()));
     });
   });

@@ -101,6 +101,7 @@
   "ora-grading.ResponseDisplay.FileRenderer.retryButton": "Попробовать снова",
   "ora-grading.ResponseDisplay.FileRenderer.fileNotFound": "Файл не найден",
   "ora-grading.ResponseDisplay.FileRenderer.unknownError": "Неизвестная ошибка",
+  "robbo.ora-grading.BackToInstructor.label": "Вернуться в панель преподавателя",
   "robbo.ora-grading.TextFilter.placeholder": "Поиск: {column}",
   "robbo.ora-grading.FilterStatus.filteredBy": "Фильтр: {columns}",
   "robbo.ora-grading.FilterStatus.clearFilters": "Сбросить фильтры",

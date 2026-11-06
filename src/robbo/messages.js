@@ -8,6 +8,11 @@
 import { defineMessages } from '@edx/frontend-platform/i18n';
 
 const messages = defineMessages({
+  backToInstructor: {
+    id: 'robbo.ora-grading.BackToInstructor.label',
+    defaultMessage: 'Back to Dashboard',
+    description: 'Link under the header back to the instructor dashboard of the course',
+  },
   allowRetake: {
     id: 'robbo.ora-grading.Rubric.allowRetake',
     defaultMessage: 'Allow a retake',

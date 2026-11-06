@@ -1,0 +1,26 @@
+// Copyright (C) 2026 Robbo <https://robbo.ru>
+// SPDX-License-Identifier: AGPL-3.0-only
+// Part of the Robbo Open edX MFE overrides. See NOTICE at repository root.
+//
+// The same link as .robbo-gradebook-header__back in the gradebook.
+
+@import "../sass/robbo-paragon-variables";
+
+// The gradebook's link colours: $primary-700 is too light for small text on white (4.37:1).
+$robbo-back-link: mix(#000000, $primary, 28%);
+$robbo-back-link-hover: mix(#000000, $primary, 38%);
+
+.robbo-back-to-instructor {
+  display: flex;
+  align-items: center;
+  gap: map-get($spacers, 1);
+  width: fit-content;
+  min-height: 44px;
+  margin-bottom: map-get($spacers, 2);
+  font-size: $font-size-sm;
+  color: $robbo-back-link;
+
+  &:hover {
+    color: $robbo-back-link-hover;
+  }
+}

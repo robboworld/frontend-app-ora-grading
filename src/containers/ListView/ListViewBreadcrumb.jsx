@@ -1,32 +1,26 @@
+// Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { ArrowBack, Launch } from '@openedx/paragon/icons';
+import { Launch } from '@openedx/paragon/icons';
 import { Hyperlink, Icon } from '@openedx/paragon';
-import { FormattedMessage } from '@edx/frontend-platform/i18n';
 
 import { selectors } from 'data/redux';
 import { locationId } from 'data/constants/app';
 import urls from 'data/services/lms/urls';
-import messages from './messages';
 
 /**
  * <ListViewBreadcrumb />
+ * Robbo: the arrow back moved under the header (robbo/BackToInstructor).
  */
 export const ListViewBreadcrumb = ({ courseId, oraName }) => (
-  <>
-    <Hyperlink className="py-4" destination={urls.openResponse(courseId)}>
-      <Icon src={ArrowBack} className="d-inline-block mr-3 breadcrumb-arrow" />
-      <FormattedMessage {...messages.backToResponses} />
+  <p className="py-4">
+    <span className="h3">{oraName}</span>
+    <Hyperlink className="align-middle" destination={urls.ora(courseId, locationId())}>
+      <Icon src={Launch} className="d-inline-block" />
     </Hyperlink>
-    <p className="py-4">
-      <span className="h3">{oraName}</span>
-      <Hyperlink className="align-middle" destination={urls.ora(courseId, locationId())}>
-        <Icon src={Launch} className="d-inline-block" />
-      </Hyperlink>
-    </p>
-  </>
+  </p>
 );
 ListViewBreadcrumb.defaultProps = {
   courseId: '',

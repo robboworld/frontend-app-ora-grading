@@ -21,6 +21,7 @@ import ConfirmModal from 'components/ConfirmModal';
 import { pathId } from 'data/constants/app';
 import urls from 'data/services/lms/urls';
 
+import BackToInstructor from '../BackToInstructor';
 import ModeSwitch, { modes } from '../ModeSwitch';
 import LearnerAnswers from './LearnerAnswers';
 import LearnerList from './LearnerList';
@@ -133,6 +134,7 @@ const LearnersView = () => {
 
   return (
     <Container fluid className="robbo-learners">
+      <BackToInstructor courseId={courseId} />
       <ModeSwitch
         active={modes.learners}
         assignmentUrl={assignmentUrl}

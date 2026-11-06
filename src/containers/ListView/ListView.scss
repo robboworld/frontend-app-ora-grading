@@ -1,10 +1,5 @@
 @import "../../sass/robbo-paragon-variables";
 
-span.pgn__icon.breadcrumb-arrow {
-  width: 16px !important;
-  height: 16px !important;
-};
-
 .empty-submission {
   width: map-get($container-max-widths, "sm");
   display: flex;
