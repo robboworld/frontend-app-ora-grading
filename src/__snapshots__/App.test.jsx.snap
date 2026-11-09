@@ -2,13 +2,12 @@
 
 exports[`App router component snapshot: disabled (show demo warning) 1`] = `
 <BrowserRouter>
-  <div>
+  <div
+    className="robbo-layout-page"
+  >
     <Head />
-    <Header
-      courseNumber="course-number"
-      courseOrg="course-org"
-      courseTitle="course-title"
-      data-testid="header"
+    <RobboHeader
+      collapseNavIntoUserMenuOnNarrow={true}
     />
     <DemoWarning />
     <NotificationsBanner />
@@ -17,20 +16,19 @@ exports[`App router component snapshot: disabled (show demo warning) 1`] = `
     >
       <ListView />
     </main>
-    <FooterSlot />
+    <RobboFooter />
   </div>
 </BrowserRouter>
 `;
 
 exports[`App router component snapshot: enabled 1`] = `
 <BrowserRouter>
-  <div>
+  <div
+    className="robbo-layout-page"
+  >
     <Head />
-    <Header
-      courseNumber="course-number"
-      courseOrg="course-org"
-      courseTitle="course-title"
-      data-testid="header"
+    <RobboHeader
+      collapseNavIntoUserMenuOnNarrow={true}
     />
     <NotificationsBanner />
     <main
@@ -38,7 +36,7 @@ exports[`App router component snapshot: enabled 1`] = `
     >
       <ListView />
     </main>
-    <FooterSlot />
+    <RobboFooter />
   </div>
 </BrowserRouter>
 `;
