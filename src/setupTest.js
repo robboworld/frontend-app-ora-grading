@@ -1,6 +1,22 @@
 // Modifications Copyright (C) 2026 Robbo. See NOTICE at repository root.
 /* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
+
+// Robbo: RobboHeader (robbo-layout) uses window.matchMedia for the narrow-viewport nav; jsdom has none.
+// A plain function (not jest.fn) so jest.resetAllMocks() in a test does not strip its return value.
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  }),
+});
 // breaking change here: https://github.com/testing-library/jest-dom/releases/tag/v6.0.0
 
 jest.mock('react', () => ({
