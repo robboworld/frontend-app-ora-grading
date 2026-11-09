@@ -7,16 +7,15 @@ import { App } from './App';
 jest.mock('data/redux', () => ({
   app: {
     selectors: {
-      courseMetadata: (state) => ({ courseMetadata: state }),
       isEnabled: (state) => ({ isEnabled: state }),
     },
   },
 }));
 
-jest.mock('@edx/frontend-component-header', () => ({
-  LearningHeader: 'Header',
+jest.mock('./robbo-layout', () => ({
+  RobboHeader: 'RobboHeader',
+  RobboFooter: 'RobboFooter',
 }));
-jest.mock('@edx/frontend-component-footer', () => ({ FooterSlot: 'FooterSlot' }));
 
 jest.mock('containers/DemoWarning', () => 'DemoWarning');
 jest.mock('containers/ListView', () => 'ListView');
@@ -32,11 +31,6 @@ let el;
 
 describe('App router component', () => {
   const props = {
-    courseMetadata: {
-      org: 'course-org',
-      number: 'course-number',
-      title: 'course-title',
-    },
     isEnabled: true,
   };
   test('snapshot: enabled', () => {
@@ -56,15 +50,9 @@ describe('App router component', () => {
       });
     });
 
-    test('Header to use courseMetadata props', () => {
-      const {
-        courseTitle,
-        courseNumber,
-        courseOrg,
-      } = el.instance.findByTestId('header')[0].props;
-      expect(courseTitle).toEqual(props.courseMetadata.title);
-      expect(courseNumber).toEqual(props.courseMetadata.number);
-      expect(courseOrg).toEqual(props.courseMetadata.org);
+    // Robbo: the site header (src/robbo-layout) instead of the course title header.
+    test('Robbo site header', () => {
+      expect(el.instance.findByType('RobboHeader')).toHaveLength(1);
     });
   });
 });

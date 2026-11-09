@@ -174,5 +174,20 @@
   "robbo.ora-grading.Learners.textFlag": "Есть текст ответа",
   "robbo.ora-grading.Learners.textFlagTitle": "Показать текст ответа",
   "robbo.ora-grading.Rubric.allowRetake": "Разрешить пересдачу",
-  "robbo.ora-grading.Rubric.allowRetakeHint": "Учащийся сможет один раз отправить новый ответ, даже если срок сдачи прошёл. Эта оценка сохранится, пока вы не проверите новый ответ."
+  "robbo.ora-grading.Rubric.allowRetakeHint": "Учащийся сможет один раз отправить новый ответ, даже если срок сдачи прошёл. Эта оценка сохранится, пока вы не проверите новый ответ.",
+  "robbo.header.mainNav.myCourses": "Мои курсы",
+  "robbo.header.mainNav.programs": "Программы",
+  "robbo.header.mainNav.courseCatalog": "Каталог курсов",
+  "robbo.header.mainNav.personalAccount": "Личный кабинет",
+  "robbo.header.mainNav.personalAccountLockedHint": "Подтвердите почту, чтобы открыть личный кабинет",
+  "robbo.header.mainNav.aria": "Основная навигация",
+  "robbo.header.user.toggleAria": "Меню параметров",
+  "robbo.header.user.menuDropdownAria": "Дополнительные параметры",
+  "robbo.header.user.dashboard": "Панель управления",
+  "robbo.header.user.profile": "Профиль",
+  "robbo.header.user.account": "Учетная запись",
+  "robbo.header.user.whatsNew": "Что нового",
+  "robbo.header.user.signOut": "Выйти",
+  "robbo.header.studio.label": "Студия",
+  "robbo.header.studio.aria": "Перейти в Студию"
 }
